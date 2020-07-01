@@ -1,6 +1,7 @@
 # faces
 
 > A Vue.js project
+> building an image gallery type thing where i can add images of random faces in every day objects. hopfully with crud functionality and try get it online
 
 ## Build Setup
 
