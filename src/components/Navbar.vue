@@ -5,16 +5,14 @@
         <router-link to="">
           <span class="nav-title">Inanimate Faces</span>
         </router-link>
+        <a class="waves-effect waves-light btn">add face
+        <router-link to="">
+            <i class="material-icons right" style="margin-top:-10px">add</i>        
+        </router-link>
+        </a> 
       </div>
     </nav>
-    <div class="nav-add-btn teal lighten-2">
-      <router-link to="">
-        <span class="add-btn"></span>
-        <a class="waves-effect waves-light btn-small">
-          <i class="material-icons left">add</i>Add a Face
-        </a>
-      </router-link>
-    </div>
+    
   </div>
 </template>
 
@@ -30,14 +28,17 @@ export default {
 <style>
 .navbar nav {
   position: relative;
-  padding: 0 20px;
+  padding: 0 20px; 
+  
 }
-.nav-add-btn{
-    height: 32.4px;
+.btn{
+    position: absolute;
+    align-items: flex-end;
+    margin-left: 1000px;
+    margin-top: 25px;
+    
 }
-.add-btn {
-  padding: 0 8px;
-  color: white;
-  border-radius: 3px;
-}
+
+
+
 </style>
