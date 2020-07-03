@@ -18,14 +18,15 @@
 <script>
 // import camera from "@/assests/camera.jpeg"
 // import image from "./assets/light.jpeg"
+import db from '@/firebase/init'
 
 export default {
   name: 'Index',
   data () {
     return {
       faces: [
-        {title: 'camera', slug: 'camera', info: ['austria', 'man-made'], id: '1'},
-        {title: 'light', slug: 'light', info: ['england', 'man-made'], id: '2'}
+        // {title: 'camera', slug: 'camera-face', info: ['austria', 'man-made'], id: '1'},
+        // {title: 'light', slug: 'light-face', info: ['england', 'man-made'], id: '2'}
       ]
     }
   },
@@ -35,6 +36,17 @@ export default {
         return face.id != id
       })
     }
+  },
+  //fetch the data from the firestore
+  created(){
+    db.collection('faces').get()
+    .then(snapshot => { //snapshot refers to the current state of the faces collection
+        snapshot.forEach(doc => { //gives access to each doc of collection
+          let face = doc.data()
+          face.id = doc.id
+          this.faces.push(face)
+        })
+    })
   }
 }
 </script>
