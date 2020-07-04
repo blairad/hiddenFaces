@@ -32,8 +32,13 @@ export default {
   },
   methods: {
     deleteInfo(id){
-      this.faces = this.faces.filter(face => {
-        return face.id != id
+      // delete doc from firestore
+      // faces is the name of the collection in db. .doc(id) to ref spacific item in db
+      db.collection('faces').doc(id).delete() //removes from db
+      .then(() => {
+        this.faces = this.faces.filter(face => { //removes on frontend
+          return face.id != id
+        })
       })
     }
   },
