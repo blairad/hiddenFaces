@@ -2,11 +2,11 @@
   <div class="navbar">
     <nav class="nav-extended blue lighten-1">
       <div class="nav-content">
-        <router-link to="">
+        <router-link :to="{ name: 'Index' }">
           <span class="nav-title">Inanimate Faces</span>
         </router-link>
-        <a class="waves-effect waves-light btn">add face
-        <router-link to="">
+       <a href="" class="waves-effect waves-light btn">add face
+        <router-link :to="{ name: 'AddFace' }">
             <i class="material-icons right" style="margin-top:-10px">add</i>        
         </router-link>
         </a> 
