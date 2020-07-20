@@ -1,21 +1,20 @@
 <template>
     <div class="add-face container">
         <h2 class="center-align indigo-text">Add New Face</h2>
-        <form>
+        <form @submit.prevent="addFace">
             <div class="field title">
                 <label for="title">Face Title</label>
                 <input type="text" name="title" v-model="title">
             </div>
             <div class="field add-location">
-                <label for="location">Location</label>
-                <input type="text" name="location" v-model="location">
+                <label for="add-location">Location</label>
+                <input type="text" name="add-location">
             </div>
-            <div class="field natural">
-                <label for="natural">Man Made or Natural</label>
-                <input type="text" name="natural" v-model="natural">
-            </div>
-            <div class="field add-image">
-
+            
+            <div class="field center-align">
+                <button class="btn-flat blue lighten-2" >Add Face</button>
+                <!-- button doesn't seem to work with just btn as classname so went for btn-flat and it worked? -->
+                
             </div>
         </form>
     </div>
@@ -28,12 +27,31 @@ export default {
     data(){
         return{
             title: null,
-            location: null
+            
+            
+        }
+    },
+    methods: {
+        addFace(){
+            console.log(this.title)
         }
     }
 }
 </script>
 
 <style>
+.add-face{
+    margin-top: 65px;
+    padding: 20px;
+    max-width: 700px;
+}
+.add-face h2{
+    font-size: 2.5em;
+    margin: 20px auto;
+}
+.add-face .field{
+    margin: 20px auto;
+}
+
 
 </style>
