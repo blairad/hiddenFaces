@@ -29,16 +29,15 @@ export default {
 .navbar nav {
   position: relative;
   padding: 0 20px; 
-  
 }
 .btn{
     position: absolute;
     align-items: flex-end;
     margin-left: 1000px;
-    margin-top: 25px;
-    
+    margin-top: 25px; 
 }
-
-
-
+/* .nav-title{
+  color:#f57f17;
+} */
 </style>
+ 
