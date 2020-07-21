@@ -10,12 +10,22 @@
                 <label for="add-location">Location</label>
                 <input type="text" name="add-location">
             </div>
+            <div class="field checkbox">
+                <label>
+                    <input type="checkbox" class="filled-in">
+                    <span>Natrual</span>
+                </label>
+                <label>
+                    <input type="checkbox" class="filled-in">
+                    <span>Man Made</span>
+                </label>
+            </div>
             
             <div class="field center-align">
                 <button class="btn-flat blue lighten-2" >Add Face</button>
                 <!-- button doesn't seem to work with just btn as classname so went for btn-flat and it worked? -->
-                
             </div>
+            
         </form>
     </div>
     
@@ -27,7 +37,7 @@ export default {
     data(){
         return{
             title: null,
-            
+            checkbox: false
             
         }
     },
@@ -51,6 +61,9 @@ export default {
 }
 .add-face .field{
     margin: 20px auto;
+}
+.add-face .field label{
+    padding: 15px;
 }
 
 
