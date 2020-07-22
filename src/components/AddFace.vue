@@ -7,16 +7,16 @@
                 <input type="text" name="title" v-model="title">
             </div>
             <div class="field add-location">
-                <label for="add-location">Location</label>
+                <label for="add-location">Location (Country)</label>
                 <input type="text" name="add-location">
             </div>
             <div class="field checkbox">
                 <label>
-                    <input type="checkbox" class="filled-in">
+                    <input type="checkbox" class="filled-in"  v-model="checkedBoxOne">
                     <span>Natrual</span>
                 </label>
                 <label>
-                    <input type="checkbox" class="filled-in">
+                    <input type="checkbox" class="filled-in"  v-model="checkedBoxtwo">
                     <span>Man Made</span>
                 </label>
             </div>
@@ -37,8 +37,8 @@ export default {
     data(){
         return{
             title: null,
-            checkbox: false
-            
+            checkedBoxOne: false,
+            checkedBoxtwo: false
         }
     },
     methods: {
