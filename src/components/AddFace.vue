@@ -12,20 +12,21 @@
             </div>
             <div class="field checkbox">
                 <label>
-                    <input type="checkbox" class="filled-in" @click="check" v-model="checkedBoxOne">
+                    <input type="checkbox" class="filled-in" @change="check" v-model="checkedBoxOne">
                     <span>Natrual</span>
                 </label>
                 <label>
-                    <input type="checkbox" class="filled-in" @click="check" v-model="checkedBoxtwo">
+                    <input type="checkbox" class="filled-in" @change="check" v-model="checkedBoxtwo">
                     <span>Man Made</span>
                 </label>
+                <p v-if="feedback" class="red-text">{{ feedback }}</p>
             </div>
             
             <div class="field center-align">
                 <button class="btn-flat blue lighten-2" >Add Face</button>
                 <!-- button doesn't seem to work with just btn as classname so went for btn-flat and it worked? -->
             </div>
-            <p v-if="feedback" class="red-text">{{ feedback }}</p>
+            
             
         </form>
     </div>
@@ -48,7 +49,8 @@ export default {
             console.log(this.title)
         },
         check(){
-            if(this.checkedBoxOne === true && this.checkedBoxtwo === true){
+            // Use @change instead of @click. Click event is triggered before value is really changed.
+            if(this.checkedBoxOne  && this.checkedBoxtwo ){
                 this.feedback = 'Only select one'
             } else {
                 this.feedback = null 
@@ -74,6 +76,9 @@ export default {
 }
 .add-face .field label{
     padding: 15px;
+}
+.add-face .field .checkbox{
+    margin-bottom: 555px;
 }
 
 
