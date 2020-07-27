@@ -1,16 +1,16 @@
 <template>
   <div class="add-face container">
     <h2 class="center-align indigo-text">Add New Face</h2>
-    <form @submit.prevent="addFace">
+    <form @submit.prevent="submitFace">
       <div class="field title">
         <label for="title">Face Title</label>
         <input type="text" name="title" v-model="title" />
-        <p v-if="feedback" class="red-text">{{ feedback.info }}</p>
+        <p v-if="!titleIsValid" class="red-text">The name of the field is reqired</p>
       </div>
       <div class="field addLocation">
         <label for="addLocation">Location (Country)</label>
         <input type="text" name="add-Location" />
-        <p v-if="feedback" class="red-text">{{ feedback.info }}</p>
+        <p v-if="!locationIsValid" class="red-text">The location is reqired</p>
       </div>
       <div class="field checkbox">
         <label>
@@ -59,22 +59,28 @@ export default {
       },
       feedback:{
           checkedBox: null,
-           title: '',
-           location: '',
-        info: null
+          title: null,
+          location: null,
+          info: null
       } 
     };
   },
+  computed: {
+    titleIsValid() {
+      return !!this.feedback.title
+    },
+    locationIsValid(){
+      return !!this.feedback.location
+    }
+  },
   methods: {
-    addFace() {
-      if(this.feedback.info){
-          this.feedback.info = null
-          
-      } else if (this.feedback.info){
-          this.feedback.info = null
-      }else {
-          this.feedback.info = "Please fill in field"
-          
+    submitFace() {
+      const formIsValid  = this.titleIsValid && this.locationIsValid
+
+      if(formIsValid){
+        console.log('form submitted', this.feedback)
+      } else {
+        console.log('invalid form')
       }
     },
     check() {
