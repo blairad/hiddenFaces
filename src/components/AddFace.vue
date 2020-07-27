@@ -4,13 +4,13 @@
     <form @submit.prevent="submitFace">
       <div class="field title">
         <label for="title">Face Title</label>
-        <input type="text" name="title" v-model="title" />
-        <p v-if="!titleIsValid" class="red-text">The name of the field is reqired</p>
+        <input type="text" name="title" v-model="feedback.title" />
+        <p v-if="!titleIsValid" class="error-message">The name of the field is required</p>
       </div>
       <div class="field addLocation">
         <label for="addLocation">Location (Country)</label>
-        <input type="text" name="add-Location" />
-        <p v-if="!locationIsValid" class="red-text">The location is reqired</p>
+        <input type="text" name="add-Location" v-model="feedback.location"/>
+        <p v-if="!locationIsValid" class="error-message">The location is required</p>
       </div>
       <div class="field checkbox">
         <label>
@@ -33,11 +33,11 @@
           />
           <span>Man Made</span>
         </label>
-        <p v-if="feedback" class="red-text">{{ feedback.checkedBox }}</p>
+        <p v-if="feedback" class="error-message">{{ feedback.checkedBox }}</p>
       </div>
 
       <div class="field center-align">
-        <button class="btn-flat blue lighten-2">Add Face</button>
+        <button class="btn-flat blue lighten-2" :disabled="!formIsValid">Add Face</button>
         <!-- button doesn't seem to work with just btn as classname so went for btn-flat and it worked? -->
       </div>
     </form>
@@ -71,13 +71,14 @@ export default {
     },
     locationIsValid(){
       return !!this.feedback.location
+    },
+    formIsValid(){
+      return this.titleIsValid && this.locationIsValid && this.checkedBox.one === true || this.checkedBox.two === true
     }
   },
   methods: {
     submitFace() {
-      const formIsValid  = this.titleIsValid && this.locationIsValid
-
-      if(formIsValid){
+      if(this.formIsValid){
         console.log('form submitted', this.feedback)
       } else {
         console.log('invalid form')
@@ -114,5 +115,8 @@ export default {
 }
 .btn-flat {
   margin-top: 50px;
+}
+.error-message{
+  color: red;
 }
 </style>
