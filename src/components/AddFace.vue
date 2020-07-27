@@ -5,12 +5,12 @@
       <div class="field title">
         <label for="title">Face Title</label>
         <input type="text" name="title" v-model="feedback.title" />
-        <p v-if="!titleIsValid" class="error-message">The name of the field is required</p>
+        <p v-if="!titleIsValid" class="error-message">* required</p>
       </div>
       <div class="field addLocation">
         <label for="addLocation">Location (Country)</label>
         <input type="text" name="add-Location" v-model="feedback.location"/>
-        <p v-if="!locationIsValid" class="error-message">The location is required</p>
+        <p v-if="!locationIsValid" class="error-message">* required</p>
       </div>
       <div class="field checkbox">
         <label>
@@ -88,7 +88,8 @@ export default {
       // Use @change instead of @click. Click event is triggered before value is really changed.
       //to prompt user to select one
       if (this.checkedBox.one && this.checkedBox.two) {
-        this.feedback.checkedBox = "Only select one";
+        this.feedback.checkedBox = "Only select one" 
+        
       } else {
         this.feedback.checkedBox = null;
       }
@@ -111,12 +112,13 @@ export default {
   margin: 20px auto;
 }
 .add-face .field label {
-  padding: 15px;
+  padding: 10px;
 }
 .btn-flat {
   margin-top: 50px;
 }
 .error-message{
+  padding: 10px;
   color: red;
 }
 </style>
