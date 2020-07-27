@@ -73,7 +73,7 @@ export default {
       return !!this.feedback.location
     },
     formIsValid(){
-      return this.titleIsValid && this.locationIsValid && this.checkedBox.one === true || this.checkedBox.two === true
+      return this.titleIsValid && this.locationIsValid && (this.checkedBox.two === true || this.checkedBox.one === true)
     }
   },
   methods: {
@@ -88,8 +88,7 @@ export default {
       // Use @change instead of @click. Click event is triggered before value is really changed.
       //to prompt user to select one
       if (this.checkedBox.one && this.checkedBox.two) {
-        this.feedback.checkedBox = "Only select one" 
-        
+        this.feedback.checkedBox = "Only select one"         
       } else {
         this.feedback.checkedBox = null;
       }
