@@ -7,8 +7,8 @@
         <input type="text" name="title" v-model="feedback.title" />
         <p v-if="!titleIsValid" class="error-message">* required</p>
       </div>
-      <div class="field addLocation">
-        <label for="addLocation">Location (Country)</label>
+      <div class="field addLocation ">
+        <label for="addLocation">Location (Country)</label> 
         <input type="text" name="add-Location" v-model="feedback.location"/>
         <p v-if="!locationIsValid" class="error-message">* required</p>
       </div>
@@ -62,7 +62,8 @@ export default {
           title: null,
           location: null,
           info: null
-      } 
+      },
+      checkResult: []
     };
   },
   computed: {
@@ -79,7 +80,8 @@ export default {
   methods: {
     submitFace() {
       if(this.formIsValid){
-        console.log('form submitted', this.feedback)
+        this.checkResult.push(this.feedback.checkedBox)
+        console.log('form submitted', this.feedback.checkResult)
       } else {
         console.log('invalid form')
       }
