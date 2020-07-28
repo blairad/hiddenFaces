@@ -19,7 +19,7 @@
             class="filled-in"
             value="Natrual"
             @change="check"
-            v-model="checkedBox.one"
+            v-model="checkedBox"
           />
           <span>Natrual</span>
         </label>
@@ -29,7 +29,7 @@
             class="filled-in"
             value="Man Made"
             @change="check"
-            v-model="checkedBox.two"
+            v-model="checkedBox"
           />
           <span>Man Made</span>
         </label>
@@ -53,10 +53,7 @@ export default {
     return {
       title: null,
       addLocation: null,
-      checkedBox: {
-        one: false,
-        two: false
-      },
+      checkedBox:[],
       feedback:{
           checkedBox: null,
           title: null,
@@ -74,14 +71,17 @@ export default {
       return !!this.feedback.location
     },
     formIsValid(){
-      return this.titleIsValid && this.locationIsValid && (this.checkedBox.two === true || this.checkedBox.one === true)
+      return this.titleIsValid && 
+      this.locationIsValid && 
+      this.checkedBox.length === 1
     }
   },
   methods: {
     submitFace() {
       if(this.formIsValid){
         this.checkResult.push(this.checkedBox.one || this.checkedBox.two)
-        console.log('form submitted', this.checkResult)
+        console.log('form submitted', this.checkedBox, this.feedback.title, this.feedback.location)
+        
       } else {
         console.log('invalid form')
       }
@@ -89,8 +89,10 @@ export default {
     check() {
       // Use @change instead of @click. Click event is triggered before value is really changed.
       //to prompt user to select one
-      if (this.checkedBox.one && this.checkedBox.two) {
-        this.feedback.checkedBox = "Only select one"         
+      // if (this.checkedBox.one && this.checkedBox.two) {
+      if (this.checkedBox.length > 1) {
+        this.feedback.checkedBox = "Only select one"      
+          
       } else {
         this.feedback.checkedBox = null;
       }
