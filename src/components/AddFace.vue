@@ -80,8 +80,8 @@ export default {
   methods: {
     submitFace() {
       if(this.formIsValid){
-        this.checkResult.push(this.feedback.checkedBox)
-        console.log('form submitted', this.feedback.checkResult)
+        this.checkResult.push(this.checkedBox.one || this.checkedBox.two)
+        console.log('form submitted', this.checkResult)
       } else {
         console.log('invalid form')
       }
