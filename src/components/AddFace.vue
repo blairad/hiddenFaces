@@ -46,6 +46,7 @@
 
 <script>
 import db from '@/firebase/init'
+import slugify from 'slugify'
 
 export default {
   name: "AddFace",
@@ -57,10 +58,9 @@ export default {
       feedback:{
           checkedBox: null,
           title: null,
-          location: null,
-          info: null
+          location: null
       },
-      checkResult: []
+      slug: null
     };
   },
   computed: {
@@ -77,15 +77,6 @@ export default {
     }
   },
   methods: {
-    submitFace() {
-      if(this.formIsValid){
-        this.checkResult.push(this.checkedBox.one || this.checkedBox.two)
-        console.log('form submitted', this.checkedBox, this.feedback.title, this.feedback.location)
-        
-      } else {
-        console.log('invalid form')
-      }
-    },
     check() {
       // Use @change instead of @click. Click event is triggered before value is really changed.
       //to prompt user to select one
@@ -95,6 +86,30 @@ export default {
           
       } else {
         this.feedback.checkedBox = null;
+      }
+    },
+    submitFace() {
+      if(this.formIsValid){
+        //create a slug
+        this.slug = slugify(this.feedback.title, {
+          replacement: '-',
+          remove: /[$*_+~.()'"!\-:@]/g,
+          lower: true
+        })
+        console.log(this.slug)
+        db.collection('faces').add({
+          title: this.feedback.title,
+          location: this.feedback.location,
+          checkedBox: this.checkedBox,
+          slug: this.slug
+        }).then(() => {
+          this.$router.push({ name: 'Index' })
+        }).catch(err => {
+          console.log(err)
+        })
+        
+      } else {
+        this.feedback = "You must fill in the form properly"
       }
     }
   }
